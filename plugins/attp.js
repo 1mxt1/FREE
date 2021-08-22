@@ -28,14 +28,10 @@ if (Config.WORKTYPE == 'private') {
     }));
 
     XTroid.addCMD({ pattern: 'attp ?(.*)', fromMe: true, desc: Lang.ATTP_DESC }, (async (message, match) => {
-
         if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORD, MessageType.text);
-                var XX = match[1]
-     var lasiyasimg = await axios.get(`https://api.xteam.xyz/attp?file&text=${encodeURIComponent(match[1])}`, { responseType: 'arraybuffer' })
-
-
+          var text = encodeURIComponent(match[1]) /*අමෝ අමෝ කොපි වෙසිගේ පුතෙක් ඇවිත්..*/
+          var lasiyasimg = await axios.get('https://hardianto-chan.herokuapp.com/api/maker/attp?text=' + text + '&apikey=hardianto', { responseType: 'arraybuffer' })
         await message.client.sendMessage(message.jid,Buffer.from(lasiyasimg.data), MessageType.sticker, { mimetype: Mimetype.webp })
-
     }));
     
         XTroid.addCMD({ pattern: 'a2tp ?(.*)', fromMe: true, desc: Lang.ATTP_DESC }, (async (message, match) => {
@@ -113,8 +109,9 @@ else if (Config.WORKTYPE == 'public') {
     XTroid.addCMD({ pattern: 'attp ?(.*)', fromMe: false, desc: Lang.ATTP_DESC }, (async (message, match) => {
 
         if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORD, MessageType.text);
-
-     var lasiyasimg = await axios.get(`https://api.xteam.xyz/attp?file&text=${encodeURIComponent(match[1])}`, { responseType: 'arraybuffer' })
+        
+        var text = encodeURIComponent(match[1]) /*අමෝ අමෝ කොපි වෙසිගේ පුතෙක් ඇවිත්..*/
+        var lasiyasimg = await axios.get('https://hardianto-chan.herokuapp.com/api/maker/attp?text=' + text + '&apikey=hardianto', { responseType: 'arraybuffer' })
 
 
         await message.client.sendMessage(message.jid,Buffer.from(lasiyasimg.data), MessageType.sticker, { mimetype: Mimetype.webp })
